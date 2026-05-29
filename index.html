@@ -1,432 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kit Gaming</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Kit Games | Project: Strike Protocol Beta</title>
+    <style>
+        /* Base Reset & Variables */
+        :root {
+            --bg-dark: #0b0c10;
+            --bg-card: #1f2833;
+            --text-light: #c5a059; /* Placeholder tint */
+            --text-main: #f5f5f5;
+            --text-muted: #8b949e;
+            --primary-blue: #45f3ff;
+            --accent-green: #00ff87;
+        }
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, Helvetica, sans-serif;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    body{
-      background:#0d0d0d;
-      color:white;
-      overflow-x:hidden;
-    }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    header{
-      width:100%;
-      padding:20px 8%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background:#111;
-      position:sticky;
-      top:0;
-      z-index:1000;
-      border-bottom:1px solid #222;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .logo{
-      font-size:32px;
-      font-weight:bold;
-      color:#00ffcc;
-    }
+        /* Header / Navbar */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    nav a{
-      color:white;
-      text-decoration:none;
-      margin-left:25px;
-      transition:0.3s;
-      font-size:16px;
-    }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    nav a:hover{
-      color:#00ffcc;
-    }
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--text-main);
+        }
 
-    .hero{
-      height:90vh;
-      background:
-      linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
-      url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      align-items:center;
-      padding:0 8%;
-    }
+        .logo span {
+            color: var(--primary-blue);
+        }
 
-    .hero-content{
-      max-width:650px;
-    }
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 120px 0 100px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(11,12,16,0.3) 0%, rgba(11,12,16,1) 100%), 
+                        radial-gradient(circle, rgba(69,243,255,0.1) 0%, rgba(0,0,0,0) 70%);
+        }
 
-    .hero h1{
-      font-size:70px;
-      margin-bottom:20px;
-      color:#00ffcc;
-    }
+        .hero-badge {
+            background: rgba(69, 243, 255, 0.1);
+            color: var(--primary-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+            border: 1px solid rgba(69, 243, 255, 0.2);
+        }
 
-    .hero p{
-      font-size:20px;
-      line-height:1.6;
-      margin-bottom:30px;
-      color:#ddd;
-    }
+        h1 {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
 
-    .hero button{
-      padding:15px 35px;
-      border:none;
-      background:#00ffcc;
-      color:black;
-      font-size:18px;
-      font-weight:bold;
-      border-radius:8px;
-      cursor:pointer;
-      transition:0.3s;
-    }
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
 
-    .hero button:hover{
-      background:white;
-    }
+        /* Forms & Buttons */
+        .beta-form-container {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 550px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
 
-    section{
-      padding:70px 8%;
-    }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
 
-    .section-title{
-      font-size:40px;
-      margin-bottom:40px;
-      color:#00ffcc;
-      text-align:center;
-    }
+        input[type="email"], select {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: border 0.3s;
+        }
 
-    .categories{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
-      gap:25px;
-    }
+        input[type="email"]:focus, select:focus {
+            border-color: var(--primary-blue);
+        }
 
-    .category-card{
-      background:#171717;
-      padding:30px;
-      border-radius:15px;
-      text-align:center;
-      transition:0.3s;
-      border:1px solid #222;
-    }
+        .btn-submit {
+            grid-column: span 2;
+            background: var(--accent-green);
+            color: #000;
+            border: none;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
 
-    .category-card:hover{
-      transform:translateY(-10px);
-      border-color:#00ffcc;
-    }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 255, 135, 0.4);
+        }
 
-    .category-card h3{
-      margin-bottom:15px;
-      color:#00ffcc;
-      font-size:24px;
-    }
+        .incentive-text {
+            font-size: 13px !important;
+            color: var(--accent-green) !important;
+            margin-top: 15px !important;
+            margin-bottom: 0 !important;
+            font-weight: 600;
+        }
 
-    .games-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-      gap:30px;
-    }
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: rgba(255,255,255,0.02);
+        }
 
-    .game-card{
-      background:#171717;
-      border-radius:15px;
-      overflow:hidden;
-      transition:0.3s;
-      border:1px solid #222;
-    }
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
 
-    .game-card:hover{
-      transform:scale(1.03);
-      border-color:#00ffcc;
-    }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
 
-    .game-card img{
-      width:100%;
-      height:220px;
-      object-fit:cover;
-    }
+        .feature-card {
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+        }
 
-    .game-content{
-      padding:20px;
-    }
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
 
-    .game-content h3{
-      margin-bottom:15px;
-      color:#00ffcc;
-      font-size:24px;
-    }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
 
-    .game-content p{
-      color:#ccc;
-      line-height:1.6;
-      margin-bottom:20px;
-    }
+        /* Specs Section */
+        .specs {
+            padding: 80px 0;
+        }
 
-    .game-content button{
-      padding:12px 20px;
-      border:none;
-      background:#00ffcc;
-      color:black;
-      font-weight:bold;
-      border-radius:6px;
-      cursor:pointer;
-    }
+        .specs-table-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    .about{
-      background:#111;
-      border-radius:20px;
-      padding:50px;
-      line-height:1.8;
-      color:#ddd;
-    }
+        .spec-col h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
 
-    footer{
-      background:#111;
-      padding:30px;
-      text-align:center;
-      margin-top:50px;
-      border-top:1px solid #222;
-    }
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+            font-size: 15px;
+        }
 
-    footer p{
-      color:#aaa;
-    }
+        .spec-label {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
 
-    @media(max-width:768px){
+        /* Footer & Trust Block */
+        footer {
+            padding: 60px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
 
-      .hero h1{
-        font-size:48px;
-      }
+        .anti-cheat {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.05);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
 
-      nav{
-        display:none;
-      }
+        .anti-cheat-icon {
+            color: var(--accent-green);
+            font-weight: bold;
+        }
 
-      .hero{
-        text-align:center;
-      }
-    }
-  </style>
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 768px) {
+            h1 { font-size: 38px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .btn-submit { grid-column: span 1; }
+            .specs-table-container { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">KIT</div>
-
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#categories">Categories</a>
-      <a href="#games">Games</a>
-      <a href="#about">About</a>
-    </nav>
-  </header>
-
-  <!-- HERO SECTION -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h1>Welcome to KIT Gaming</h1>
-
-      <p>
-        Discover the best games, explore exciting adventures,
-        compete online, and experience next-generation gaming
-        all in one place.
-      </p>
-
-      <button onclick="showMessage()">Explore Games</button>
-    </div>
-  </section>
-
-  <!-- CATEGORIES -->
-  <section id="categories">
-    <h2 class="section-title">Game Categories</h2>
-
-    <div class="categories">
-
-      <div class="category-card">
-        <h3>Action</h3>
-        <p>Fast-paced combat, shooting, and survival games.</p>
-      </div>
-
-      <div class="category-card">
-        <h3>Adventure</h3>
-        <p>Explore open worlds and epic storylines.</p>
-      </div>
-
-      <div class="category-card">
-        <h3>Racing</h3>
-        <p>Drive powerful cars and dominate the tracks.</p>
-      </div>
-
-      <div class="category-card">
-        <h3>Sports</h3>
-        <p>Football, basketball, cricket, and more.</p>
-      </div>
-
-      <div class="category-card">
-        <h3>Battle Royale</h3>
-        <p>Fight online against players worldwide.</p>
-      </div>
-
-      <div class="category-card">
-        <h3>Strategy</h3>
-        <p>Plan, build, and conquer your enemies.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- GAMES -->
-  <section id="games">
-    <h2 class="section-title">Popular Games</h2>
-
-    <div class="games-grid">
-
-      <!-- GAME 1 -->
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1971&auto=format&fit=crop">
-
-        <div class="game-content">
-          <h3>Cyber Strike</h3>
-
-          <p>
-            A futuristic action shooter where players battle
-            in advanced cyber cities with powerful weapons and
-            online multiplayer combat.
-          </p>
-
-          <button>Play Now</button>
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">DREAM<span>KIT</span></div>
         </div>
-      </div>
+    </header>
 
-      <!-- GAME 2 -->
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=2070&auto=format&fit=crop">
-
-        <div class="game-content">
-          <h3>Speed Legends</h3>
-
-          <p>
-            Experience high-speed racing with realistic graphics,
-            customizable cars, and competitive online tournaments.
-          </p>
-
-          <button>Play Now</button>
+    <!-- Hero / Lead Gen Section -->
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">CLOSED BETA IS LIVE</span>
+            <h1>Drop In. Outsmart.<br>Survive.</h1>
+            <p>Experience the next generation of competitive, fast-paced 5v5 tactical gunplay. Built by everyday gamers, for everyday gamers.</p>
+            
+            <div class="beta-form-container">
+                <form action="#" method="POST">
+                    <div class="form-grid">
+                        <input type="email" placeholder="Enter your email address" required>
+                        <select required>
+                            <option value="" disabled selected>Select Platform</option>
+                            <option value="pc">PC (Steam / Epic)</option>
+                            <option value="ps5">PlayStation 5</option>
+                            <option value="xbox">Xbox Series X/S</option>
+                        </select>
+                        <button type="submit" class="btn-submit">Secure My Beta Access</button>
+                    </div>
+                </form>
+                <p class="incentive-text">⚡ GUARANTEED REWARD: Unlocks exclusive Cobalt Weapon Skin instantly upon entry.</p>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- GAME 3 -->
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1974&auto=format&fit=crop">
-
-        <div class="game-content">
-          <h3>Kingdom Quest</h3>
-
-          <p>
-            Embark on a magical fantasy adventure filled with
-            dragons, hidden treasures, and legendary battles.
-          </p>
-
-          <button>Play Now</button>
+    <!-- Gameplay Hook & Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Strike Protocol Shines</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Laser-Accurate Gunplay</h3>
+                    <p>No random spray patterns or dynamic bloom. Every single bullet lands precisely where your crosshair aims, rewarding pure positioning and mechanical skill.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Adaptive Matchmaking</h3>
+                    <p>Tired of sweat-fests? Our smart matching algorithms keep games balanced, making sure casual and competitive gamers alike find exactly their tempo.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Dynamic Environments</h3>
+                    <p>Fight across neon urban gridways to freezing arctic outposts. Master unique map-altering mechanics that shift choke points on the fly.</p>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- GAME 4 -->
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?q=80&w=2071&auto=format&fit=crop">
-
-        <div class="game-content">
-          <h3>Ultimate Football</h3>
-
-          <p>
-            Build your dream football team and compete against
-            players worldwide in realistic stadium matches.
-          </p>
-
-          <button>Play Now</button>
-        </div>
-      </div>
-
-      <!-- GAME 5 -->
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?q=80&w=2070&auto=format&fit=crop">
-
-        <div class="game-content">
-          <h3>Warzone Arena</h3>
-
-          <p>
-            Join massive online battle royale matches and survive
-            against hundreds of players in intense combat zones.
-          </p>
-
-          <button>Play Now</button>
-        </div>
-      </div>
-
-      <!-- GAME 6 -->
-      <div class="game-card">
-        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop">
-
-        <div class="game-content">
-          <h3>Space Odyssey</h3>
-
-          <p>
-            Explore galaxies, complete missions, and battle alien
-            enemies in this immersive sci-fi universe.
-          </p>
-
-          <button>Play Now</button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <h2 class="section-title">About KIT</h2>
-
-    <div class="about">
-      <p>
-        KIT Gaming is a modern gaming platform inspired by
-        popular gaming stores and online gaming communities.
-        Players can discover trending games, explore categories,
-        and enjoy a premium gaming experience.
-      </p>
-
-      <br>
-
-      <p>
-        Our mission is to create an immersive platform for gamers
-        around the world with beautiful design, exciting content,
-        and easy accessibility.
-      </p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 KIT Gaming. All Rights Reserved.</p>
-  </footer>
-
-  <!-- JAVASCRIPT -->
-  <script>
-    function showMessage(){
-      alert("Welcome to KIT Gaming!");
-    }
-  </script>
-
-</body>
-</html>
